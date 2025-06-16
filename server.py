@@ -11,7 +11,7 @@ app = Flask(__name__)
 # Route to serve the index.html file
 @app.route('/')
 def serve_index():
-    return send_from_directory(os.getcwd(), 'index.html')
+    return app.send_static_file('index.html')
 
 # Route to get supported languages from pyphen.LANGUAGES
 @app.route('/languages', methods=['GET'])
@@ -40,5 +40,3 @@ def hyphenate_text():
 
     return jsonify({'result': hyphenated_text})
 
-if __name__ == '__main__':
-    app.run()
